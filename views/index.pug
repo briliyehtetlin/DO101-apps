@@ -2,14 +2,14 @@ router.get('/', function(req, res) {
   res.render('index', { weather: null, err: null });
 });
 
+const OWM_API_KEY = process.env.OWM_API_KEY || 'invalid_key';
+const UNITS = process.env.UNITS || 'metric';
+
 router.post('/get_weather', async function (req,res) {
   let city = req.body.city;
-  let url = http://api.openweathermap.org/data/2.5/weather?q=London&appid=da02ea13c9b318e538bc6d6100e79dba
+  let url = http://api.openweathermap.org/data/2.5/weather?q=${city}&units=${UNITS}&appid=${OWM_API_KEY};
 
   try {
     let data = await fetch(url);
     let weather = await data.json();
 
-const OWM_API_KEY = process.env.OWM_API_KEY || 'invalid_key';
-
-const UNITS = process.env.UNITS || 'metric';
